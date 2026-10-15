@@ -1,0 +1,25 @@
+[INFO] Scanning for projects...
+[INFO] -----------------< com.example:fraud-detector-api >------------------
+[INFO] Building Fraud Detection Engine 1.0.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ fraud-detector-api ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 8 source files to /app/target/classes
+[ERROR] /app/src/main/java/com/example/fraud/PaymentService.java:[34,21] cannot find symbol
+  symbol:   method processTransaction(com.example.fraud.TransactionRequest)
+  location: variable paymentGateway of type com.example.gateway.StripeGateway
+[ERROR] /app/src/main/java/com/example/fraud/PaymentService.java:[52,15] incompatible types: java.lang.String cannot be converted to java.util.UUID
+[INFO] 2 errors 
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /app/src/main/java/com/example/fraud/PaymentService.java:[34,21] cannot find symbol
+[ERROR] /app/src/main/java/com/example/fraud/PaymentService.java:[52,15] incompatible types
+[INFO] 2 errors
+[INFO] -------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] -------------------------------------------------------------
+[INFO] Total time:  3.120 s
+[INFO] Finished at: 2026-10-09T09:15:22Z
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project fraud-detector-api: Compilation failure -> [Help 1]

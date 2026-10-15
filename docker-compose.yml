@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  triage-webhook-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cicd-failure-triage-server
+    ports:
+      - "8080:8080"
+    environment:
+      - APP_NAME=AI CI/CD Failure Triage Webhook Server
+      - LLM_PROVIDER=mock
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+      - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET:-}
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL:-}
+    restart: unless-stopped

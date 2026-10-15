@@ -1,0 +1,16 @@
+2026-10-09T08:20:10.112Z [INFO] Building Docker container for Model Inference Engine
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.12kB done
+#2 [internal] load .dockerignore
+#3 [builder 1/5] FROM python:3.11-slim
+#4 [builder 2/5] WORKDIR /app
+#5 [builder 3/5] RUN pip install torch transformers scikit-learn
+#6 [builder 4/5] COPY . .
+#7 [builder 5/5] RUN python train_model.py
+Allocating 8.0 GB tensor weights in memory...
+Loading HuggingFace transformer checkpoint...
+Killed process 1420 (python) total-vm:8450112kB, anon-rss:7892110kB, file-rss:0kB, shmem-rss:0kB
+OOMKilled: true
+/bin/sh: line 1:  1420 Killed                  python train_model.py
+The command '/bin/sh -c python train_model.py' returned a non-zero code: 137
+##[error]Process completed with exit code 137.

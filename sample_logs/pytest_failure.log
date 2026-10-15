@@ -1,0 +1,33 @@
+2026-10-09T05:12:01.2145Z [INFO] Setting up Python 3.11 environment
+2026-10-09T05:12:03.1102Z [INFO] Installing project dependencies
+2026-10-09T05:12:08.5521Z [INFO] export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+2026-10-09T05:12:08.5530Z [INFO] export GITHUB_TOKEN=ghp_1234567890abcdefghijklmnopqrstuvwxyz
+2026-10-09T05:12:09.0011Z [INFO] Running: pytest tests/ -v
+============================= test session starts ==============================
+platform linux -- Python 3.11.4, pytest-7.4.0, pluggy-1.2.0
+rootdir: /home/runner/work/payment-service/payment-service
+collected 12 items
+
+tests/test_health.py::test_liveness PASSED                               [  8%]
+tests/test_health.py::test_readiness PASSED                              [ 16%]
+tests/test_auth.py::test_token_generation PASSED                         [ 25%]
+tests/test_auth.py::test_jwt_validation FAILED                           [ 33%]
+tests/test_payment.py::test_charge_card PASSED                           [ 41%]
+tests/test_payment.py::test_refund PASSED                                [ 50%]
+
+=================================== FAILURES ===================================
+______________________________ test_jwt_validation ______________________________
+
+    def test_jwt_validation():
+        token = generate_test_token(user_id="usr_9988", expired=False)
+>       assert validate_token(token)["is_valid"] is True
+E       AssertionError: assert False is True
+E       + where False = {'is_valid': False, 'error': 'TokenExpiredError'}['is_valid']
+
+tests/test_auth.py:42: AssertionError
+----------------------------- Captured stderr call -----------------------------
+2026-10-09 05:12:12 [ERROR] auth.py: Token expired at 1600000000, current timestamp is 1791522732
+=========================== short test summary info ============================
+FAILED tests/test_auth.py::test_jwt_validation - AssertionError: assert False is True
+========================= 1 failed, 11 passed in 1.45s =========================
+##[error]Process completed with exit code 1.

@@ -1,0 +1,6 @@
+2026-10-09T09:30:00.000Z [INFO] Pulling base image registry.internal.company.com/base-python:3.11
+2026-10-09T09:30:15.000Z [WARNING] Retrying download (1/3) after error: Connection reset by peer
+2026-10-09T09:30:45.000Z [WARNING] Retrying download (2/3) after error: 502 Bad Gateway
+2026-10-09T09:31:45.000Z [ERROR] Failed to fetch layers from registry: ETIMEDOUT connection reset by peer
+2026-10-09T09:32:00.000Z [ERROR] The operation was canceled after 10 minutes.
+##[error]The operation was canceled after 10 minutes.
