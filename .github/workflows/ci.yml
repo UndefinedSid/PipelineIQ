@@ -1,0 +1,44 @@
+name: CI Pipeline with AI Triage Assistant
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  test-and-triage:
+    name: Build, Test & Triage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run Test Suite (Demonstration Failure)
+        id: test_step
+        run: |
+          set -o pipefail
+          echo "Running automated test suite..."
+          # Note: This deliberate assertion failure demonstrates the AI Triage Assistant in action.
+          # To make the build pass, replace this with: pytest tests/ -v
+          python -c "assert False, 'AssertionError: Expected HTTP 200 OK but got 500 Internal Server Error in payment_service.py:84'" 2>&1 | tee build.log
+
+      - name: AI Build Failure Triage Assistant
+        if: failure()
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          llm-provider: "mock"
+          log-file: "build.log"
+          pr-number: ${{ github.event.pull_request.number }}
